@@ -2,7 +2,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 47.120.70.248:8848
     gateway:
       routes:
         - id: xyoj-backend-user-service
@@ -23,6 +23,8 @@ spring:
     web-application-type: reactive
 server:
   port: 8104
+  servlet:
+    context-path: /api
 knife4j:
   gateway:
     # ① 第一个配置，开启gateway聚合组件

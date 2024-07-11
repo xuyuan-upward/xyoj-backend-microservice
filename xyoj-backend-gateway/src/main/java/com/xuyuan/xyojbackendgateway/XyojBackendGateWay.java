@@ -7,10 +7,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableDiscoveryClient
-public class XyojBackendGatewayApplication {
+public class XyojBackendGateWay {
 
-    public static void main(String[] args) {
-        SpringApplication.run(XyojBackendGatewayApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(XyojBackendGateWay.class, args);
+	}
 
 }
