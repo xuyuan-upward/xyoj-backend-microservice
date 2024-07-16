@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.120.70.248:8848
+server:
+  port: 9000
+  servlet:
+    context-path: /api/model

@@ -4,7 +4,7 @@ package com.xuyuan.xyojbackendjudgeservice.judge.strategy;
 import com.xuyuan.xyojbackendmodel.model.codesandbox.JudgeInfo;
 
 /**
- * 判题策略
+ * 判题策略 （策略模式）
  */
 public interface JudgeStrategy {
 

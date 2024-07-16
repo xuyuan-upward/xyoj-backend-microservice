@@ -82,7 +82,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.xuyuan.xyojbackendgateway.XyojBackendGateWay</mainClass>
+                    <mainClass>com.xuyuan.xyojbackendgateway.XyojBackendGateWayApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>

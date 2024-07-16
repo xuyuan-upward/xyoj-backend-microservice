@@ -4,6 +4,9 @@ import com.xuyuan.xyojbackendmodel.model.codesandbox.ExecuteCodeRequest;
 import com.xuyuan.xyojbackendmodel.model.codesandbox.ExecuteCodeResponse;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 代理模式
+ */
 @Slf4j
 public class CodeSandboxProxy implements CodeSandbox {
 

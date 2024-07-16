@@ -1,8 +1,11 @@
 spring:
+  session:
+      store-type: redis #开启session共享
+      timeout: 2592000
   cloud:
     nacos:
       discovery:
-        server-addr: 47.120.70.248:8848
+        server-addr: 192.168.146.1:8848
     gateway:
       routes:
         - id: xyoj-backend-user-service

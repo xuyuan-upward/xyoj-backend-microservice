@@ -10,10 +10,14 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@MapperScan("com.yupi.xyojbackendquestionservice.mapper")
+@MapperScan(basePackages = "com.xuyuan.xyojbackendquestionservice.mapper")
 @EnableScheduling
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
-@ComponentScan("com.xuyuan")
+// 会覆盖@SpringBootApplication里面的扫描包
+// 如果需要扫描其他模块下的包，需要按需加载
+@ComponentScan(basePackages = {"com.xuyuan.xyojbackendquestionservice", "com.xuyuan.xyojbackendcommon.exception"})
+//@ComponentScan("com.xuyuan.xyojbackendquestionservice")
+//@ComponentScan("com.xuyuan")
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.xuyuan.xyojbackendserviceclient.service"})
 public class XyojBackendQuestionServiceApplication {

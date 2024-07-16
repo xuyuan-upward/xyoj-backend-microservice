@@ -1,6 +1,7 @@
 package com.xuyuan.xyojbackendmodel.model.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public class QuestionSubmit implements Serializable {
     /**
      * id
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -52,12 +53,18 @@ public class QuestionSubmit implements Serializable {
     /**
      * 创建时间
      */
+//    @TableField(fill = FieldFill.INSERT)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
-
     /**
      * 更新时间
      */
+
+//    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
+
+
 
     /**
      * 是否删除
@@ -65,6 +72,7 @@ public class QuestionSubmit implements Serializable {
     @TableLogic
     private Integer isDelete;
 
+    private String tags;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

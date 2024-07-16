@@ -1,34 +1,35 @@
 spring:
   application:
-    name: xuyuan-backend-service-client
-  #  dev
-  profiles:
-    active: dev
-  # ?? swagger3
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-  # session ??
-  session:
-    store-type: redis
-    # 30 ???
-    timeout: 2592000
-  # ?????
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.120.70.248:3306/xy_oj
-    username: xy_oj
-    password: @Xuyuan1371480
-  # Redis ??
+    name: xyoj-backend-judge-service
+  # Redis
   redis:
     database: 1
     host: 47.120.70.248
     port: 6379
     timeout: 5000
+    # session
     password: Xuyuan1371480
+  session:
+    store-type: redis
+    # 30
+    timeout: 2592000
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.120.70.248:3306/xy_oj?serverTimezone=Asia/Shanghai
+    username: xy_oj
+    password: Xuyuan1371480
+  #
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    password: guest
+    username: guest
+  #  swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   servlet:
     multipart:
-      # ????
       max-file-size: 10MB
   cloud:
     nacos:
@@ -36,10 +37,10 @@ spring:
         server-addr: 47.120.70.248:8848
 server:
   address: 0.0.0.0
-  port: 8102
+  port: 8103
   servlet:
-    context-path: /api/user
-    # cookie 30 ???
+    context-path: /api/judege
+    # cookie
     session:
       cookie:
         max-age: 2592000
@@ -50,10 +51,10 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
-      logic-delete-field: isDelete # ????????????
-      logic-delete-value: 1 # ?????????? 1?
-      logic-not-delete-value: 0 # ?????????? 0?
-# ??????
+      logic-delete-field: isDelete #
+      logic-delete-value: 1 #
+      logic-not-delete-value: 0 #
+# 调用沙箱类型
 codesandbox:
   type: remote
 knife4j:

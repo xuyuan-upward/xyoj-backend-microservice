@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: xyoj-backend-question-service
+  # session
+  session:
+    store-type: redis
+  redis:
+    database: 1
+    host: localhost
+    port: 6379
+    timeout: 5000
+  #  dev
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    password: guest
+    username: guest
+  #  swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+   # 30天
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/xy_oj?serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+#    password: Xuyuan1371480
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.146.1:8848
+server:
+  address: 0.0.0.0
+  port: 8102
+  servlet:
+    context-path: /api/question
+    # cookie 30
+    session:
+      cookie:
+        max-age: 2592000
+        path: /api
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete #
+      logic-delete-value: 1 #
+      logic-not-delete-value: 0 #
+codesandbox:
+  type: remote
+knife4j:
+  enable: true

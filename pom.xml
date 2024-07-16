@@ -60,6 +60,13 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.7</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -71,12 +78,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.2</version>
-        </dependency>
         <!-- redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -115,7 +116,13 @@
             <artifactId>commons-collections4</artifactId>
             <version>4.4</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>2021.0.5</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -141,10 +148,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>

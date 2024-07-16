@@ -208,7 +208,9 @@ public class QuestionController {
         ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
         Page<Question> questionPage = questionService.page(new Page<>(current, size),
                 questionService.getQueryWrapper(questionQueryRequest));
-        return ResultUtils.success(questionService.getQuestionVOPage(questionPage, request));
+        Page<QuestionVO> questionVOPage = questionService.getQuestionVOPage(questionPage, request);
+        System.out.println("sfdfz");
+        return ResultUtils.success(questionVOPage);
     }
 
     /**
@@ -309,7 +311,7 @@ public class QuestionController {
         if (questionSubmitAddRequest == null || questionSubmitAddRequest.getQuestionId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        // 登录才能点赞
+        // 登录才能提交题目
         final User loginUser = userFeignClient.getLoginUser(request);
         long questionSubmitId = questionSubmitService.doQuestionSubmit(questionSubmitAddRequest, loginUser);
         return ResultUtils.success(questionSubmitId);

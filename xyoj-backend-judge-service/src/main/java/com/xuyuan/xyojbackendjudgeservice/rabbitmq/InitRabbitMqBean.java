@@ -28,7 +28,6 @@ public class InitRabbitMqBean {
             Channel channel = connection.createChannel();
             String EXCHANGE_NAME = "code_exchange";
             channel.exchangeDeclare(EXCHANGE_NAME, "direct");
-
             // 创建队列，随机分配一个队列名称
             String queueName = "code_queue";
             channel.queueDeclare(queueName, true, false, false, null);

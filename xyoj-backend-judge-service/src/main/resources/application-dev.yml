@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: xyoj-backend-judge-service
+  #
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    password: guest
+    username: guest
+  #  swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    # 30
+    timeout: 2592000
+  #
+  # Redis
+  redis:
+    database: 1
+    host: localhost
+    port: 6379
+    timeout: 5000
+    # session
+  session:
+      store-type: redis
+      # 30
+      timeout: 2592000
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/xy_oj?serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+#    password: Xuyuan1371480
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.146.1:8848
+server:
+  address: 0.0.0.0
+  port: 8103
+  servlet:
+    context-path: /api/judege
+    # cookie
+    session:
+      cookie:
+        max-age: 2592000
+        path: /api
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete #
+      logic-delete-value: 1 #
+      logic-not-delete-value: 0 #
+# 调用沙箱类型
+codesandbox:
+  type: remote
+knife4j:
+  enable: true

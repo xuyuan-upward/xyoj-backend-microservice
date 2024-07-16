@@ -16,11 +16,11 @@ public class JudgeContext {
 
     private JudgeInfo judgeInfo;
 
-    private List<String> inputList;
+    private List<String> testOutputList;
 
-    private List<String> outputList;
+    private List<String> runOutputList;
 
-    private List<JudgeCase> judgeCaseList;
+//    private List<JudgeCase> judgeCaseList;
 
     private Question question;
 

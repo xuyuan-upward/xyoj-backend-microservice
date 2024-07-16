@@ -5,7 +5,7 @@ import com.xuyuan.xyojbackendjudgeservice.judge.codesandbox.impl.RemoteCodeSandb
 import com.xuyuan.xyojbackendjudgeservice.judge.codesandbox.impl.ThirdPartyCodeSandbox;
 
 /**
- * 代码沙箱工厂（根据字符串参数创建指定的代码沙箱实例）
+ * 静态工厂模式代码沙箱工厂（根据字符串参数创建指定的代码沙箱实例）
  */
 public class CodeSandboxFactory {
 

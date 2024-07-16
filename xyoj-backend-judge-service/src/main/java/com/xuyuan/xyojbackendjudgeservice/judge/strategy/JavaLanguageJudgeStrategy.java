@@ -23,28 +23,40 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
     @Override
     public JudgeInfo doJudge(JudgeContext judgeContext) {
         JudgeInfo judgeInfo = judgeContext.getJudgeInfo();
-        Long memory = Optional.ofNullable(judgeInfo.getMemory()).orElse(0L);
+        // 沙箱运行配置
+        Long memory = Optional.ofNullable(judgeInfo.getMemory()).orElse(0L)/1024;
         Long time = Optional.ofNullable(judgeInfo.getTime()).orElse(0L);
-        List<String> inputList = judgeContext.getInputList();
-        List<String> outputList = judgeContext.getOutputList();
+        // 测试输出用例
+        List<String> testOutputList = judgeContext.getTestOutputList();
+        // 运行输出用例
+        List<String> runOutputList = judgeContext.getRunOutputList();
+        // 获取题目配置信息
         Question question = judgeContext.getQuestion();
-        List<JudgeCase> judgeCaseList = judgeContext.getJudgeCaseList();
+//        List<JudgeCase> judgeCaseList = judgeContext.getJudgeCaseList();
         JudgeInfoMessageEnum judgeInfoMessageEnum = JudgeInfoMessageEnum.ACCEPTED;
         JudgeInfo judgeInfoResponse = new JudgeInfo();
         judgeInfoResponse.setMemory(memory);
         judgeInfoResponse.setTime(time);
         // 先判断沙箱执行的结果输出数量是否和预期输出数量相等
-        if (outputList.size() != inputList.size()) {
+        System.out.println("testOutputList.size" + testOutputList.size());
+        System.out.println("runOutputList.size()" + runOutputList.size());
+        if (testOutputList.size() != runOutputList.size()) {
             judgeInfoMessageEnum = JudgeInfoMessageEnum.WRONG_ANSWER;
-            judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
+            judgeInfoResponse.setMessage(judgeInfoMessageEnum.getText());
             return judgeInfoResponse;
         }
         // 依次判断每一项输出和预期输出是否相等
-        for (int i = 0; i < judgeCaseList.size(); i++) {
-            JudgeCase judgeCase = judgeCaseList.get(i);
-            if (!judgeCase.getOutput().equals(outputList.get(i))) {
+        for (int i = 0; i < testOutputList.size(); i++) {
+            String testOutput = testOutputList.get(i);
+            String runOutput = runOutputList.get(i);
+            System.out.println("testOutput" + ":" + testOutput);
+            System.out.println("runOutput" + ":" + runOutput);
+            boolean flag = !testOutput.equals(runOutput);
+            System.out.println("flag"+ flag);
+            if (flag) {
+                System.out.println("直接返回了这是什么意思？");
                 judgeInfoMessageEnum = JudgeInfoMessageEnum.WRONG_ANSWER;
-                judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
+                judgeInfoResponse.setMessage(judgeInfoMessageEnum.getText());
                 return judgeInfoResponse;
             }
         }
@@ -55,17 +67,17 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
         Long needTimeLimit = judgeConfig.getTimeLimit();
         if (memory > needMemoryLimit) {
             judgeInfoMessageEnum = JudgeInfoMessageEnum.MEMORY_LIMIT_EXCEEDED;
-            judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
+            judgeInfoResponse.setMessage(judgeInfoMessageEnum.getText());
             return judgeInfoResponse;
         }
         // Java 程序本身需要额外执行 10 秒钟
         long JAVA_PROGRAM_TIME_COST = 10000L;
         if ((time - JAVA_PROGRAM_TIME_COST) > needTimeLimit) {
             judgeInfoMessageEnum = JudgeInfoMessageEnum.TIME_LIMIT_EXCEEDED;
-            judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
+            judgeInfoResponse.setMessage(judgeInfoMessageEnum.getText());
             return judgeInfoResponse;
         }
-        judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
+        judgeInfoResponse.setMessage(judgeInfoMessageEnum.getText());
         return judgeInfoResponse;
     }
 }
